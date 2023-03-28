@@ -1,0 +1,3 @@
+function earlybirdSays() {
+  return greet;
+}
