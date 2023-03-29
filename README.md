@@ -40,3 +40,9 @@ tsconfig.json
 ```
 
 Google Apps Script の V8 エンジンがどのバージョンの ECMAScript に準拠しているかは公表されていないため基本的に `compilerOptions.lib` と `compilerOptions.target` は設定せず、エラーが出たときに設定する。
+
+### Workaround
+
+`@types/google-apps-script` で定義されている型はサーバー側が解釈する型と異なる。例えばサーバー側では UrlFetchApp のレスポンスの型は `UrlFetchApp.HTTPResponse` であるが、ローカルでは `GoogleAppsScript.URL_Fetch.HTTPResponse` になる。この不一致により、ローカルに合わせるとサーバー側で補完が効かなくなり、サーバー側に合わせるとこれ加えて IDE がエラーを発してしまう。現時点でこの問題の解決策は無いようなので、ローカルでエラーが出ないようコーディングしてサーバー側で補完が効かないことを許容するほかなさそうである。
+
+https://stackoverflow.com/questions/73503410/incompatible-type-notation-in-jsdoc-for-google-apps-script-online-vs-locally
